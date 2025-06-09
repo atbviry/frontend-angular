@@ -1,0 +1,12 @@
+.spacer {
+    flex: auto;
+}
+
+/**
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+**/
+
+/**ko***/
+.custom {
+	  accent-color: rebeccapurple;
+}
