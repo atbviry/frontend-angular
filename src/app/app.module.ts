@@ -16,6 +16,11 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StudentsComponent } from './students/students.component';
 import { PayementsComponent } from './payements/payements.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import { LoadStudentsComponent } from './load-students/load-students.component';
+import { LoadPaymentsComponent } from './load-payments/load-payments.component';
+
 
 
 @NgModule({
@@ -27,7 +32,9 @@ import { PayementsComponent } from './payements/payements.component';
     LoginComponent,
     DashboardComponent,
     StudentsComponent,
-    PayementsComponent
+    PayementsComponent,
+    LoadStudentsComponent,
+    LoadPaymentsComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +44,9 @@ import { PayementsComponent } from './payements/payements.component';
     MatIconModule,
     MatMenuModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatCardModule,
+    MatDividerModule //pour inserer un séparateur
 
   ],
   providers: [],
