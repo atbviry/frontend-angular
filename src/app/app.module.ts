@@ -20,6 +20,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import { LoadStudentsComponent } from './load-students/load-students.component';
 import { LoadPaymentsComponent } from './load-payments/load-payments.component';
+import {MatTableModule} from '@angular/material/table';
 
 
 
@@ -46,7 +47,8 @@ import { LoadPaymentsComponent } from './load-payments/load-payments.component';
     MatSidenavModule,
     MatListModule,
     MatCardModule,
-    MatDividerModule //pour inserer un séparateur
+    MatDividerModule, //pour inserer un séparateur
+    MatTableModule, //pour inser une table
 
   ],
   providers: [],
