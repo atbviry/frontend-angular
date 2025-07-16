@@ -1,11 +1,63 @@
-<div class="container">
+<div class="login-container">
     <mat-card>
         <mat-card-header>
             <mat-card-title>Authentification</mat-card-title>
         </mat-card-header>
         <mat-divider></mat-divider>
-        <mat-card-content>
-            Login Form
+        <mat-card-content style="padding: 10px;">
+            <!-- champ user -->
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Username or Email</mat-label>
+                <input matInput formControlName="username" formCoplaceholder="Enter your user name or email">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" placeholder="Enter your password">
+            </mat-form-field>
+            <mat-card-actions align="end">
+                <button mat-raised-button color="primary">Login</button>
+            </mat-card-actions> -->
+            <!-- {{loginForm.value.user| json}} -->
+            <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div formGroupName="user">   
+                    <mat-form-field appearance="outline">
+                        <mat-label>Username or Email</mat-label>
+                        <input matInput formControlName="name" formCoplaceholder="Enter your user name or email">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput formControlName="password" placeholder="Enter your password">
+                    </mat-form-field>
+                    <mat-card-actions align="end">
+                        <button type="submit" mat-raised-button [disabled]="!loginForm.valid"
+                            color="primary">Login</button>
+                    </mat-card-actions>
+                </div>
+
+            </form> -->
+
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div formGroupName="user">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Username or Email</mat-label>
+                        <input matInput formControlName="name" formCoplaceholder="Enter your user name or email">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <button mat-icon-button matSuffix (click)="visibilityToggle()">
+                            <mat-icon>{{getVisibility()}}</mat-icon>
+                        </button>
+                        <input matInput [type]="getIputType()" formControlName="password"
+                            placeholder="Enter your password" >
+                    </mat-form-field>
+                    <mat-card-actions align="end">
+                        <button type="submit" mat-raised-button [disabled]="!loginForm.valid"
+                            color="primary">Login</button>
+                    </mat-card-actions>
+                </div>
+
+            </form>
         </mat-card-content>
     </mat-card>
 </div>

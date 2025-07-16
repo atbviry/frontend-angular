@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="bloc">
+        <mat-card [formGroup]="paymentformGroup" class="payement-form">
+            <mat-card-header>
+                <mat-card-title>New Payement</mat-card-title>
+
+            </mat-card-header>
+            <mat-card-content>
+                <!--date-->
+                <!-- <mat-form-field appearance="outline">
+                <mat-label>Payment Date</mat-label>
+                <input matInput formControlName="date">
+            </mat-form-field> -->
+                <!-- devient-->
+                <mat-form-field>
+                    <mat-label>Payment Date</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="date"
+                    [class.is-invalid]="paymentformGroup.invalid">
+                    <mat-hint>DD/MM/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <!--amount-->
+                <mat-form-field appearance="outline">
+                    <mat-label>Amount</mat-label>
+                    <input matInput formControlName="amount">
+                </mat-form-field>
+                <!--type-->
+                <!-- <mat-form-field appearance="outline">
+                <mat-label>Type</mat-label>
+                <input matInput formControlName="type">
+            </mat-form-field> -->
+                <!-- Devient -->
+                <mat-form-field>
+                    <mat-label>Type</mat-label>
+                    <!-- <mat-select formControlName="type">
+                    <mat-option value="CASH">CASH</mat-option>
+                     <mat-option value="CHECK">CHECK</mat-option>
+                     <mat-option value="TRANSFER">TRANSFER</mat-option>
+                     <mat-option value="DEPOT">DEPOT</mat-option>
+                </mat-select> -->
+                    <mat-select formControlName="type">
+                        @for (type of paymentsList; track type) {
+                        <mat-option [value]="type.value">{{type.viewValue}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+                <!--student code pas besoin de le saisir normalement on l'a deja mais on va quand meme l'afficher-->
+                <mat-form-field appearance="outline">
+                    <mat-label>Student Code</mat-label>
+                    <input matInput formControlName="studentCode">
+                </mat-form-field>
+                <!--file-->
+                <!-- <mat-form-field appearance="outline">
+                <mat-label>File</mat-label>
+                <input matInput type="fiile" formControlName="file">
+            </mat-form-field> -->
+                <!-- devient -->
+                <mat-form-field appearance="outline">
+                    <!-- <mat-label>File</mat-label> -->
+                    <button type="button" mat-icon-button matPrefix (click)="f_input.click()">
+                        <mat-icon>attach_file</mat-icon>
+                    </button>
+                    <input matInput readonly formControlName="fileName">
+                    <input type="file" hidden #f_input (change)="selectFile($event)" accept="application/pdf">
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions>
+                <!-- je vais créer le bouton Save Payement, c'est un mat raised buton avec la couleur bleu(primary). c'est quand je clique sur ce bouton c'est en ce moment que j'appel savePayment(). je vais créer savePayment() -->
+                <button mat-raised-button color="primary" (click)="savePayment()">Save Payment</button>
+                <!-- <mat-spinner *ngIf="showProgress"></mat-spinner> -->
+                <!-- j'utilise la nouvelle template -->
+                @if (showProgress) {
+                <mat-spinner></mat-spinner>
+                }
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <!-- Bloc Facture: attention , il y'a une condition sur l'affichage de la facture, il doit s'afficher si le paiement est enregistré
+      -->
+    <div class="bloc" *ngIf="invoiceSelected">
+        <mat-card >
+            <mat-card-header>
+                <mat-card-title>{{fileName}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <!-- <pdf-viewer [src]="pdfFileUrl" [render-text]="true" [original-size]="false"
+                    style="width: 400px; height: 500px"
+                ></pdf-viewer> -->
+                <!-- ou cette solution avec plus d'options -->
+                <pdf-viewer [src]="pdfFileUrl" [render-text]="true" [original-size]="false" [rotation]="0"
+                    [show-all]="true" [fit-to-page]="true" [zoom]="1" [zoom-scale]="'page-width'"
+                    [external-link-target]="'blank'" [autoresize]="true" [show-borders]="false" class="pdf-viewer"
+                    (after-load-complete)="afterLoadComplete($event)">
+                </pdf-viewer>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+</div>

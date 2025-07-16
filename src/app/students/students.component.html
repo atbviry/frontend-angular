@@ -5,7 +5,48 @@
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content>
-            Students Content
+            <!--Students Content-->
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Filtre étudiants</mat-label>
+                <input matInput (keyup)="filterStudents($event)" placeholder="Rechercher etudiant" #input>
+            </mat-form-field>
+
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z1">
+                <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+                <!-- ID Column -->
+                <!-- dans mon cas student c'est etudiant -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
+                    <td mat-cell *matCellDef="let student"> {{student.id}} </td>
+                </ng-container>
+
+                <!-- First Name Column -->
+                <ng-container matColumnDef="firstName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+                    <td mat-cell *matCellDef="let student"> {{student.firstName}} </td>
+                </ng-container>
+
+                <!-- Last Name Column -->
+                <ng-container matColumnDef="lastName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+                    <td mat-cell *matCellDef="let student"> {{student.lastName}} </td>
+                </ng-container>
+
+                <!-- Payments Column -->
+                <ng-container matColumnDef="payments">
+                    <th mat-header-cell *matHeaderCellDef> Payment </th>
+                    <td mat-cell *matCellDef="let student">
+                        <button (click)="studentPaiements(student)" mat-raised-button color="primary">Payments</button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5,15,30,50,100]" showFirstLastButtons/>
         </mat-card-content>
     </mat-card>
 </div>

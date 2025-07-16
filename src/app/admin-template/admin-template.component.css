@@ -10,3 +10,7 @@
 .custom {
 	  accent-color: rebeccapurple;
 }
+
+.mdc-button{
+justify-content: flex-end;
+}

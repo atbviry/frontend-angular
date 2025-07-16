@@ -1,0 +1,26 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Payment Invoice</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <pdf-viewer 
+                [src]="pdfFileUrl" 
+                [render-text]="true" 
+                [original-size]="false" 
+                [rotation]="0"
+                [show-all]="true" 
+                [fit-to-page]="true" 
+                [zoom]="1" 
+                [zoom-scale]="'page-width'"
+                [external-link-target]="'blank'" 
+                [autoresize]="true" 
+                [show-borders]="false" 
+                class="pdf-viewer"
+                (after-load-complete)="afterLoadComplete($event)">
+            </pdf-viewer>
+        </mat-card-content>
+    </mat-card>
+<div style="display: inline-block; background: lightblue; padding: 10px;">Élément 1</div>
+<div style="display: inline-block; background: lightgreen; padding: 10px;">Élément 2</div>
+</div>

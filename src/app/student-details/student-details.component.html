@@ -1,11 +1,30 @@
+<p>Student payment</p>
+<p>{{studentCode}}</p>
 <div class="container">
+    <mat-toolbar>
+        <button (click)="newPayment()" mat-raised-button color="primary">New payment</button>
+    </mat-toolbar>
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Payements Title</mat-card-title>
+            <mat-card-title>Student payment {{studentCode}}</mat-card-title>
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content>
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <!--- pour faire avec le tableau classique
+            <div>
+        
+ <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th> <th>First namne</th> <th>Lats name</th> <th>Code</th> <th>Program Id</th> <th>ID</th> <th>ID</th> <th>ID</th>
+                </tr>
+            </thead>
+
+        </table>
+            </div>
+            --->
+           
+            <table mat-table [dataSource]="paymentsDataSource" class="mat-elevation-z8">
 
                 <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
@@ -46,11 +65,17 @@
                     <td mat-cell *matCellDef="let payment"> {{payment.student.firstName}} </td>
                 </ng-container>
 
+                 <!-- invoice Column -->
+                <ng-container matColumnDef="invoice">
+                    <th mat-header-cell *matHeaderCellDef>Invoice</th>
+                    <td mat-cell *matCellDef="let payment"> 
+                        <button (click)="paymentInvoice(payment)" mat-raised-button color="primary">Invoice</button>
+                    </td>
+                </ng-container>
+
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
-
-             <mat-paginator [pageSizeOptions]="[5,15,30,50,100]" showFirstLastButtons/>
              
         </mat-card-content>
     </mat-card>
